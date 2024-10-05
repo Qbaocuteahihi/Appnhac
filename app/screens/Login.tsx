@@ -14,6 +14,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { Image } from 'react-native';
+
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +31,7 @@ const Login = () => {
       console.log(response);
     } catch (error: any) {
       console.log(error);
-      alert("Sign in failed" + error.message);
+      alert("Email hoặc mật khẩu của bạn không đúng !!!!");
     } finally {
       setLoading(false);
     }
@@ -46,13 +49,14 @@ const Login = () => {
       alert("Check your emails!");
     } catch (error: any) {
       console.log(error);
-      alert("Sign in failed" + error.message);
+      alert("Sign in faile" + error.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
+    
     <View style={styles.container}>
       <KeyboardAvoidingView behavior="padding">
         <TextInput
@@ -120,4 +124,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  
 });
