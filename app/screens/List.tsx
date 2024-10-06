@@ -1,18 +1,29 @@
-import { View, Text, Button } from "react-native"
-import React from "react"
-import { NavigationProp } from "@react-navigation/native"
-import { FIREBASE_AUTH } from "../../FirebaseConfig";
+import React from 'react';
+import { View, Button, Alert, Text } from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
+import { FIREBASE_AUTH } from '../../FirebaseConfig';
 
 interface RouterProps {
     navigation: NavigationProp<any, any>;
 }
-const List = ({navigation}: RouterProps) => {
-    return (
-        <View style = {{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Button onPress = {() => navigation.navigate('details')} title = 'Open details'/>
-        <Button onPress = {() => FIREBASE_AUTH.signOut()} title = 'Logout'/>
 
+const List = ({ navigation }: RouterProps) => {
+    const handleLogout = async () => {
+        try {
+            await FIREBASE_AUTH.signOut();
+            Alert.alert("Thành công", "Bạn đã đăng xuất thành công!");
+        } catch (error) {
+            Alert.alert("Lỗi", "Không thể đăng xuất. Vui lòng thử lại.");
+        }
+    };
+
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Button onPress={() => navigation.navigate('Details')} title='Mở chi tiết' />
+            <Button onPress={() => navigation.navigate('MusicPlayer')} title='Mở Music Player' />
+            <Button onPress={handleLogout} title='Đăng xuất' />
         </View>
     );
-    };
-    export default List;
+};
+
+export default List;
