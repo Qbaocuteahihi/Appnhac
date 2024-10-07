@@ -10,31 +10,29 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { FIREBASE_AUTH } from "../../FirebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RouteProp } from "@react-navigation/native";
-import SignUp from "./SignUp";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
-type LoginProps = {
-  navigation: StackNavigationProp<any>; // Thay 'any' bằng tên stack cụ thể nếu có
-  route: RouteProp<any>; // Nếu có route props, có thể định nghĩa cụ thể
+type SignUpProps = {
+  navigation: StackNavigationProp<any>;
+  route: RouteProp<any>;
 };
 
-const Login: React.FC<LoginProps> = ({ navigation }) => {
+const SignUp: React.FC<SignUpProps> = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
 
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      Alert.alert("Đăng nhập thành công", "Bạn đã đăng nhập thành công!");
-      navigation.navigate("Inside");
+      await createUserWithEmailAndPassword(auth, email, password);
+      Alert.alert("Đăng ký thành công", "Đã tạo tài khoản thành công!");
     } catch (error: any) {
       console.error(error);
-      Alert.alert("Đăng nhập thất bại", error.message);
+      Alert.alert("Đăng ký thất bại", error.message);
     } finally {
       setLoading(false);
     }
@@ -42,16 +40,13 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView
-        behavior="padding"
-        style={styles.keyboardAvoidingView}
-      >
+      <KeyboardAvoidingView behavior="padding">
         <TextInput
           value={email}
           style={styles.input}
           placeholder="Email"
           autoCapitalize="none"
-          onChangeText={setEmail}
+          onChangeText={(text) => setEmail(text)}
         />
         <TextInput
           secureTextEntry
@@ -59,21 +54,20 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
           style={styles.input}
           placeholder="Password"
           autoCapitalize="none"
-          onChangeText={setPassword}
+          onChangeText={(text) => setPassword(text)}
         />
 
         {loading ? (
           <ActivityIndicator size="large" color="#0eff" />
         ) : (
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
+          <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+            <Text style={styles.buttonText}>Create Account</Text>
           </TouchableOpacity>
         )}
 
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text style={styles.signupText}>
-            Don't have an account?{" "}
-            <Text style={styles.signupLink}>Sign Up</Text>
+            Already have an account? <Text style={styles.signupLink}>Login</Text>
           </Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -81,17 +75,13 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
   );
 };
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     marginHorizontal: 20,
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-    justifyContent: "center",
   },
   input: {
     marginVertical: 4,
@@ -103,23 +93,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#DDDDDD",
   },
   button: {
-    backgroundColor: "#99CCCC", // Màu nền trung tính
+    backgroundColor: "#99CCCC",
     paddingVertical: 10,
     borderRadius: 12,
     marginVertical: 5,
     alignItems: "center",
   },
   buttonText: {
-    color: "#0000ff", // Màu chữ xanh dương
+    color: "#0000ff",
     fontSize: 16,
     fontWeight: "bold",
   },
   signupText: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 16,
   },
   signupLink: {
-    color: "blue",
-    fontWeight: "bold",
+    color: 'blue',
+    fontWeight: 'bold',
   },
 });

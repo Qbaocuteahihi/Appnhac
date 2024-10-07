@@ -7,10 +7,8 @@
     <list default="true" id="acf4dedd-96e6-4b2a-a6ca-a03469861dc7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FirebaseConfig.ts" beforeDir="false" afterPath="$PROJECT_DIR$/FirebaseConfig.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/screens/Details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/screens/Details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/screens/List.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/screens/List.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/screens/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/screens/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/MusicPlayer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/screens/MusicPlayer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
